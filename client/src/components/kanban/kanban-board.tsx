@@ -153,8 +153,8 @@ export default function KanbanBoard({ projectId }: KanbanBoardProps) {
   }
 
   return (
-    <div className="p-6 h-full">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full">
+    <div className="p-4 lg:p-6 h-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 h-full">
         {/* To-Do Column */}
         <div 
           className={`bg-white rounded-lg shadow-sm border border-gray-200 flex flex-col ${

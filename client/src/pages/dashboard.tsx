@@ -61,23 +61,23 @@ export default function Dashboard() {
     <div className="min-h-screen flex bg-gray-50">
       <Sidebar />
       
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className="flex-1 flex flex-col overflow-hidden lg:ml-0 ml-16">
         <TopBar 
           selectedProject={selectedProject ? projects?.find(p => p.id === selectedProject) : null}
         />
         
         <div className="flex-1 overflow-auto">
           {selectedProject ? (
-            <div className="flex h-full">
-              <div className="flex-1">
+            <div className="flex flex-col lg:flex-row h-full">
+              <div className="flex-1 min-h-0">
                 <KanbanBoard projectId={selectedProject} />
               </div>
-              <div className="w-80">
+              <div className="w-full lg:w-80 border-t lg:border-t-0 lg:border-l border-gray-200">
                 <ChatPanel projectId={selectedProject} />
               </div>
             </div>
           ) : (
-            <div className="flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full p-4">
               <div className="text-center">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">
                   Welcome to TaskFlow

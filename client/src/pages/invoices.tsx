@@ -57,9 +57,9 @@ export default function Invoices() {
     <div className="min-h-screen flex bg-gray-50">
       <Sidebar />
       
-      <main className="flex-1 p-6">
+      <main className="flex-1 p-4 lg:p-6 lg:ml-0 ml-16">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
             <h1 className="text-2xl font-semibold text-gray-900">Invoices</h1>
             <Button>
               <Plus className="w-4 h-4 mr-2" />

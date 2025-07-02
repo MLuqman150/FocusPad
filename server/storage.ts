@@ -38,7 +38,7 @@ import {
   type ClientInvitation,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, and, desc, asc } from "drizzle-orm";
+import { eq, and, desc, asc, isNull } from "drizzle-orm";
 
 export interface IStorage {
   // User operations (required for Replit Auth)
@@ -148,12 +148,13 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getUserWorkspaces(userId: string): Promise<Workspace[]> {
-    return await db
+    const result = await db
       .select()
       .from(workspaces)
-      .leftJoin(workspaceMembers, eq(workspaces.id, workspaceMembers.workspaceId))
-      .where(and(eq(workspaces.ownerId, userId)))
+      .where(eq(workspaces.ownerId, userId))
       .orderBy(desc(workspaces.createdAt));
+    
+    return result;
   }
 
   async getWorkspace(id: number): Promise<Workspace | undefined> {
@@ -326,7 +327,7 @@ export class DatabaseStorage implements IStorage {
     const [entry] = await db
       .select()
       .from(timeEntries)
-      .where(and(eq(timeEntries.userId, userId), eq(timeEntries.endTime, null)))
+      .where(and(eq(timeEntries.userId, userId), isNull(timeEntries.endTime)))
       .orderBy(desc(timeEntries.startTime));
     return entry;
   }
